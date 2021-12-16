@@ -1,0 +1,94 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<AssemblyTitle>CompanionCloth</AssemblyTitle>
+		<Version>0.1.0</Version>
+		<Description>A Hollow Knight mod to let Cloth accompany and fight with you all the way</Description>
+		<Authors>Clazex</Authors>
+		<Copyright>Copyright © 2021 Clazex</Copyright>
+
+		<TargetFramework>net472</TargetFramework>
+		<DebugType>portable</DebugType>
+		<LangVersion>10.0</LangVersion>
+		<RootNamespace>CompanionCloth</RootNamespace>
+		<Nullable>enable</Nullable>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<HKRefs Condition="$(HKRefs) == ''">../HKManaged/</HKRefs>
+		<HKModdingApi Condition="$(HKModdingApi) == ''">$(HKRefs)</HKModdingApi>
+		<HKModRefs Condition="$(HKModRefs) == ''">$(HKRefs)/Mods</HKModRefs>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<Compile Remove="dist/**" />
+		<EmbeddedResource Remove="dist/**" />
+		<None Remove="dist/**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="Assembly-CSharp">
+			<HintPath>$(HKModdingApi)/Assembly-CSharp.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="UnityEngine">
+			<HintPath>$(HKRefs)/UnityEngine.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="UnityEngine.CoreModule">
+			<HintPath>$(HKRefs)/UnityEngine.CoreModule.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="UnityEngine.InputLegacyModule">
+			<HintPath>$(HKRefs)/UnityEngine.InputLegacyModule.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="UnityEngine.Physics2DModule">
+			<HintPath>$(HKRefs)/UnityEngine.Physics2DModule.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="Newtonsoft.Json">
+			<HintPath>$(HKRefs)/Newtonsoft.Json.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="PlayMaker">
+			<HintPath>$(HKRefs)/PlayMaker.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="MMHOOK_Assembly-CSharp">
+			<HintPath>$(HKModdingApi)/MMHOOK_Assembly-CSharp.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="MMHOOK_Playmaker">
+			<HintPath>$(HKModdingApi)/MMHOOK_Playmaker.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="Vasi">
+			<HintPath>$(HKModRefs)/Vasi/Vasi.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Nullable" Version="1.3.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+	
+	<Target Name="CopyMod" AfterTargets="PostBuildEvent">
+		<Copy SourceFiles="$(TargetPath);$(TargetDir)$(TargetName).pdb" DestinationFolder="$(HKModRefs)/$(TargetName)" SkipUnchangedFiles="true" />
+	</Target>
+
+	<Target Name="CreateReleaseZip" AfterTargets="PostBuildEvent" Condition="$(Configuration) == 'Release'">
+		<RemoveDir Directories="$(ProjectDir)/dist" />
+		<MakeDir Directories="$(ProjectDir)/dist/tmp" />
+
+		<Copy SourceFiles="$(TargetPath);$(TargetDir)$(TargetName).pdb;$(SolutionDir)/README.md;$(SolutionDir)/README.zh.md;$(SolutionDir)/LICENSE" DestinationFolder="$(ProjectDir)/dist/tmp" />
+		<ZipDirectory SourceDirectory="$(ProjectDir)/dist/tmp" DestinationFile="$(ProjectDir)/dist/$(TargetName)-v$(Version).zip" />
+
+		<Copy SourceFiles="$(TargetDir)/Vasi.dll;$(TargetDir)/Vasi.pdb" DestinationFolder="$(ProjectDir)/dist/tmp" />
+		<ZipDirectory SourceDirectory="$(ProjectDir)/dist/tmp" DestinationFile="$(ProjectDir)/dist/$(TargetName)-v$(Version)-full.zip" />
+
+		<RemoveDir Directories="$(ProjectDir)/dist/tmp" />
+	</Target>
+</Project>

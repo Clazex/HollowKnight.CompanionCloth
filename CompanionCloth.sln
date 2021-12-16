@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31912.275
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanionCloth", "CompanionCloth\CompanionCloth.csproj", "{FDC58D01-0BF7-4DC0-8D59-DBEC80651C0A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F67BF3A1-81A7-4FD7-BC73-D7662DC28C71}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		CHANGELOG.md = CHANGELOG.md
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FDC58D01-0BF7-4DC0-8D59-DBEC80651C0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDC58D01-0BF7-4DC0-8D59-DBEC80651C0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDC58D01-0BF7-4DC0-8D59-DBEC80651C0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDC58D01-0BF7-4DC0-8D59-DBEC80651C0A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B562596F-4567-4390-B713-6EAE0E33B5A7}
+	EndGlobalSection
+EndGlobal
