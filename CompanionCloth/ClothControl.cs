@@ -41,7 +41,7 @@ internal static class ClothControl {
 
 		clothInstance.name = "Cloth Fighter Companion";
 
-		HC.instance.StartCoroutine(Activate());
+		_ = HC.instance.StartCoroutine(Activate());
 	}
 
 	private static void Despawn() {

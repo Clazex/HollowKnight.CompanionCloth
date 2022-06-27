@@ -11,7 +11,7 @@ public sealed class GlobalSettings {
 		get => summonKey;
 		internal set {
 			try {
-				Input.GetKey(value);
+				_ = Input.GetKey(value);
 			} catch (ArgumentException) {
 				return;
 			}
@@ -24,7 +24,7 @@ public sealed class GlobalSettings {
 		get => recallKey;
 		internal set {
 			try {
-				Input.GetKey(value);
+				_ = Input.GetKey(value);
 			} catch (ArgumentException) {
 				return;
 			}

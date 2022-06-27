@@ -19,7 +19,7 @@
 		<HKModdingApi Condition="$(HKModdingApi) == ''">$(HKRefs)</HKModdingApi>
 		<HKModRefs Condition="$(HKModRefs) == ''">$(HKRefs)/Mods</HKModRefs>
 	</PropertyGroup>
-	
+
 	<ItemGroup>
 		<Compile Remove="dist/**" />
 		<EmbeddedResource Remove="dist/**" />
@@ -74,7 +74,7 @@
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 	</ItemGroup>
-	
+
 	<Target Name="CopyMod" AfterTargets="PostBuildEvent">
 		<Copy SourceFiles="$(TargetPath);$(TargetDir)$(TargetName).pdb" DestinationFolder="$(HKModRefs)/$(TargetName)" SkipUnchangedFiles="true" />
 	</Target>
